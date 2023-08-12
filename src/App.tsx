@@ -10,6 +10,8 @@ import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 import RPC from "./solanaRPC";
 import "./App.css";
 import Auth from "./Auth";
+import logo from './assets/pitchartext.svg';
+
 
 import { DynamicWidget, useDynamicContext } from "@dynamic-labs/sdk-react";
 
@@ -47,11 +49,10 @@ function App() {
   }, [user?.walletPublicKey]);
 
   useEffect(() => {}, []);
-
   return (
     <div className="body">
       <div className="container">
-        <h1 className="title">PITCHAR</h1>
+        <img width='400px' height='75px' src={logo} alt="logo" />
         {mr ? (
           <div>
             <Auth />
