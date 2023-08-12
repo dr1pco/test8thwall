@@ -51,7 +51,7 @@ function App() {
   return (
     <div className="body">
       <div className="container">
-        <h1 className="title">Monkey Mayhem</h1>
+        <h1 className="title">PITCHAR</h1>
         {mr ? (
           <div>
             <Auth />
@@ -64,7 +64,7 @@ function App() {
           <iframe
             title="frame"
             className="iframe"
-            src="https://vpsworldtourmiami.8thwall.app/monkey-mayhem/"
+            src="https://pitchar.8thwall.app/cubs-game/"
             allow="camera;gyroscope;accelerometer;magnetometer;xr-spatial-tracking;microphone;geolocation;"
           />
         </div>
