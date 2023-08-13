@@ -176,9 +176,14 @@ function App() {
         </div>
           </div>
         ) : (
-          <div>
+          <div style={{
+            display: "flex",
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
           <button onClick={handleSaveCreation} className="card">
-            Load my Ticket
+            Load My Ticket
           </button>
         </div>
         )}
