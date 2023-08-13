@@ -46,8 +46,25 @@ export default function Popup({ tiplinkurl, tiplinkaddress }) {
         >
           CLAIM 
         </Button>
+        <Button
+          onClick={handleRefresh}
+          sx={{
+            marginTop: "60px",
+            borderRadius: 0,
+            backgroundColor: "#FF3131",
+            border: "3px solid #FF3131",
+            color: "white",
+            fontWeight: 800,
+            fontSize: "14px",
+            "&:hover": {
+              backgroundColor: "#FF3131",
+            },
+          }}
+        >
+          PLAY AGAIN
+        </Button>
         <p className={styles.p3}>
-            WARNING: NOT CLAIMING YOUR TICKET MAY RESULT IN
+            WARNING: NOT CLAIMING YOUR TICKET BEFORE PLAYING THE GAME AGAIN MAY RESULT IN
             LOSING YOUR TIVKE{" "}
           </p>
 
