@@ -259,7 +259,7 @@ function Auth() {
       </div>
       <div>
         <button onClick={login} className="card">
-          Redeem with Google
+          Redeem my Ticket
         </button>
       </div>
     </div>
@@ -269,7 +269,7 @@ function Auth() {
     <div>
       <div className="rewardcontainer">
         <h1 className="rewardtitle">Redeem Reward</h1>
-        <div>{provider || user ? loggedInView : loggedoutView}</div>
+        {/* <div>{provider || user ? loggedInView : loggedoutView}</div> */}
       </div>
     </div>
   );

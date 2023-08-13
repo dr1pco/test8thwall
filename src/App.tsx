@@ -11,9 +11,15 @@ import RPC from "./solanaRPC";
 import "./App.css";
 import Auth from "./Auth";
 import logo from './assets/pitchartext.svg';
+import Popup from "./Popup";
+
 
 
 import { DynamicWidget, useDynamicContext } from "@dynamic-labs/sdk-react";
+import createTiplink from "./utils/createTiplink";
+import uploadMetadata from "./utils/uploadMetadata";
+import prepareTipLink from "./utils/prepareTiplik";
+import mintGameNft from "./utils/mintGameNft";
 
 function App() {
   // const [web3auth, setWeb3auth] = useState<Web3Auth | null>(null);
@@ -24,6 +30,24 @@ function App() {
   const [currentWallet, setCurrentWallet] = useState<String | null>(null);
   const [dynamicStatus, setDynamicStatus] = useState(false);
   const [mr, setMR] = useState(false);
+
+  const [gameInput, setGameInput] = useState("");
+  const [savedGameInput, setSavedGameInput] = useState("");
+  const [modifiedInput, setModifiedInput] = useState("");
+  const [savedModifiedInput, setSavedModifiedInput] = useState([]);
+  const [gameResult, setGameResult] = useState("");
+  const [modifiedGameResult, setModifiedGameResult] = useState("");
+  const [result, setResult] = useState("");
+  const [currentGameName, setCurrentGameName] = useState("");
+  const [currentGameLink, setCurrentGameLink] = useState(
+    "https://arggg-arcade.vercel.app/"
+  );
+  const [currentGameMintAddress, setCurrentGameMintAddress] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("base");
+  const [tipLink, setTipLink] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [showLink, setShowLink] = useState(true);
 
   const {
     user,
@@ -48,18 +72,115 @@ function App() {
     };
   }, [user?.walletPublicKey]);
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
+
+  async function mint() {
+    try {
+      setLoading(true);
+
+      const currentGameDescription = `${currentGameName}`;
+      const currentImageUri =
+        "https://gateway.pinata.cloud/ipfs/QmR8BTfXhX2FSi3xESHJoPsQbm4nkVUjpzydAEV6Ys8C2g?_gl=1*1hwri3c*rs_ga*MzkzZmJjMTctYjc3Ni00YWNkLTlmYjktN2VlZDBhNzJjYWFh*rs_ga_5RMPXG14TE*MTY4NjY3MzcwMi4xMS4wLjE2ODY2NzM3MDkuNTMuMC4w";
+
+      const tpres = await createTiplink();
+      console.log("Wallet address: " + tpres.pk);
+      const currentUserWallet = await tpres.pk;
+      setTipLink(tpres.tiplinkurl);
+      // const sgres = await saveGame(
+      //   currentGameName,
+      //   currentUserWallet,
+      //   savedGameInput,
+      //   currentModifiedInput,
+      //   result
+      // );
+      // let gameLink;
+      // if (sgres.url) {
+      //   console.log("Game url: " + sgres.url);
+      //   gameLink = await sgres.url;
+      //   setCurrentGameLink(gameLink);
+      // } else {
+      //   throw new Error("Failed to save game. Please try saving again!");
+      // }
+
+      const umres = await uploadMetadata(
+        currentUserWallet
+      );
+      if (umres == "Failed to upload metadata!") {
+        throw new Error("Error 100: Failed to save game. Please try saving again!");
+      }
+      console.log("Metadata URI: " + umres.metadataUri);
+      const currentMetadataUri = await umres.metadataUri;
+
+      if (!currentUserWallet) {
+        throw new Error("Error 101: Failed to save game. Please try saving again!");
+      }
+      const preres = await prepareTipLink(currentUserWallet);
+      if (!preres.result) {
+        throw new Error("Error 102: Failed to save game. Please try saving again!");
+      }
+
+      const mgnres = await mintGameNft(
+        currentUserWallet,
+        currentMetadataUri
+      );
+      if (mgnres == "Failed to mint!") {
+        throw new Error("Error 103: Failed to save game. Please try saving again!");
+      }
+      console.log("Game minted: " + JSON.stringify(mgnres));
+      const gameMintAddress = await mgnres.nftMintAddress;
+      if (gameMintAddress) {
+        setCurrentGameMintAddress(gameMintAddress);
+        setLoading(false);
+        setStatus("completed");
+        setShowModal(true);
+      } else {
+        throw new Error("Error 104: Failed to save game. Please try saving again!");
+      }
+    } catch (error) {
+      setLoading(false);
+      setStatus("mint");
+      console.error(error);
+      alert('Failed to mint!');
+    }
+  }
+
+  async function handleSaveCreation(event: { preventDefault: () => void; }) {
+    event.preventDefault();
+
+    if (currentGameName !== "" && currentGameName !== " ") {
+      await mint();
+    } else {
+      alert("Please set a game name!");
+    }
+  }
+
   return (
     <div className="body">
       <div className="container">
         <img width='400px' height='75px' src={logo} alt="logo" />
+        
         {mr ? (
           <div>
-            <Auth />
+            <div style={{
+          display: "flex",
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+          {showModal && (
+            <Popup
+              tiplinkurl={tipLink}
+              tiplinkaddress={currentGameMintAddress}
+            />
+          )}
+        </div>
           </div>
         ) : (
           <div>
-          </div>
+          <button onClick={handleSaveCreation} className="card">
+            Load my Ticket
+          </button>
+        </div>
         )}
         <div className="eightwall">
           <iframe

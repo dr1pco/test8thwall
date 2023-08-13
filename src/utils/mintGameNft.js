@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default async function mintGameNft(userwalletaddress, gamename, metadatauri) {
+export default async function mintGameNft(userwalletaddress, metadatauri) {
   const url = "https://api.r3x.tech/game/mint-cubs-game-nft";
   const headers = {
     "Content-Type": "application/json"
@@ -8,7 +8,7 @@ export default async function mintGameNft(userwalletaddress, gamename, metadatau
 
   const data = {
     "userwalletaddress": `${userwalletaddress}`,
-    "gamename": `${gamename}`,
+    "gamename": `Cubs Game Ticket`,
     "metadatauri": `${metadatauri}`
   };
 
