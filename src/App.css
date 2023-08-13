@@ -159,3 +159,46 @@
   font-size: 16px;
   font-family: monospace;
 }
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.9); /* This makes the background a bit white, making it appear blurred. */
+  backdrop-filter: blur(4px); /* This creates the blur effect. */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-indicator {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #004AAD;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+
+.loading-text {
+  color: #004AAD;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.loading-text {
+  color: #004AAD;
+  font-size: 18px;
+  font-weight: 800;
+  font-family: Graduate;
+  margin-top: 10px; 
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

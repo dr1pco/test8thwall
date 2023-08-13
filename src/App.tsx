@@ -39,15 +39,13 @@ function App() {
   const [modifiedGameResult, setModifiedGameResult] = useState("");
   const [result, setResult] = useState("");
   const [currentGameName, setCurrentGameName] = useState("");
-  const [currentGameLink, setCurrentGameLink] = useState(
-    "https://arggg-arcade.vercel.app/"
-  );
   const [currentGameMintAddress, setCurrentGameMintAddress] = useState("");
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("base");
   const [tipLink, setTipLink] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showLink, setShowLink] = useState(true);
+  
 
   const {
     user,
@@ -146,12 +144,9 @@ function App() {
 
   async function handleSaveCreation(event: { preventDefault: () => void; }) {
     event.preventDefault();
-
-    if (currentGameName !== "" && currentGameName !== " ") {
-      await mint();
-    } else {
-      alert("Please set a game name!");
-    }
+    setLoading(true);
+    await mint();
+    setLoading(false);
   }
 
   return (
@@ -161,19 +156,6 @@ function App() {
         
         {mr ? (
           <div>
-            <div style={{
-          display: "flex",
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-          {showModal && (
-            <Popup
-              tiplinkurl={tipLink}
-              tiplinkaddress={currentGameMintAddress}
-            />
-          )}
-        </div>
           </div>
         ) : (
           <div style={{
@@ -187,6 +169,19 @@ function App() {
           </button>
         </div>
         )}
+        <div style={{
+          display: "flex",
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+          {showModal && (
+            <Popup
+              tiplinkurl={tipLink}
+              tiplinkaddress={currentGameMintAddress}
+            />
+          )}
+        </div>
         <div className="eightwall">
           <iframe
             title="frame"
@@ -213,6 +208,12 @@ function App() {
           </a>
         </footer>
       </div>
+      {loading && (
+        <div className="loading-overlay">
+          <div className="loading-indicator"></div>
+          <div className="loading-text">LOADING</div>
+        </div>
+      )}
     </div>
   );
 }
