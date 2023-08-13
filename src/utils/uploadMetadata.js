@@ -10,7 +10,7 @@ export default async function uploadMetadata(userwalletaddress, gamename, gamede
     "userwalletaddress": `${userwalletaddress}`,
     "gamename": `Cubs PitchAR Game`,
     "gamedescription": `Pitch baseballs win tickets`,
-    "imageuri": `${imageuri}`,
+    "imageuri": `https://gold-increasing-bonobo-965.mypinata.cloud/ipfs/QmfErEuJgkLkr3XUYtVXujsy8WWKwm7ms3PMcXuSKbW776?_gl=1*t9vdqf*_ga*MzkzZmJjMTctYjc3Ni00YWNkLTlmYjktN2VlZDBhNzJjYWFh*_ga_5RMPXG14TE*MTY5MTk1OTQ4Mi40LjEuMTY5MTk1OTU4Ni4zNS4wLjA.`,
     "gamelink": `${gamelink}`
   };
 
