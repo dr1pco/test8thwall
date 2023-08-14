@@ -45,6 +45,11 @@ function App() {
   const [tipLink, setTipLink] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showLink, setShowLink] = useState(true);
+  const [earnedPoints, setEarnedPoints] = useState(0)
+  const IFRAME_ID = "my-iframe"
+
+  const [active, setActive] = useState(false)
+
   
 
   const {
@@ -70,7 +75,30 @@ function App() {
     };
   }, [user?.walletPublicKey]);
 
-  useEffect(() => { }, []);
+  // useEffect(() => {
+  //   window.XRIFrame.registerXRIFrame(IFRAME_ID)
+  //   return () => {
+  //     window.XRIFrame.deregisterXRIFrame()
+  //   }
+  // }, [])
+
+
+  // useEffect(() => {
+  //   //iFrame to React communication handler
+  //   const handler = (event: { detail: { coinPoints: number; }; }) => {
+  //     let pts = Math.min(event.detail.coinPoints * 100, 4500)
+  //     console.log("react coinPoints", event.detail.coinPoints)
+  //     setEarnedPoints(pts)
+  //   }
+
+  //   //iFrame to React communication event listener
+  //   window.addEventListener("points", handler)
+
+  //   //iFrame to React communication handler cleanup
+  //   return () => {
+  //     window.removeEventListener("points", handler)
+  //   }
+  // }, [])
 
   async function mint() {
     try {
@@ -153,7 +181,7 @@ function App() {
     <div className="body">
       <div className="container">
         <img width='400px' height='75px' src={logo} alt="logo" />
-        
+        {/* <div className="loading-text">POINTS: {earnedPoints}</div> */}
         {mr ? (
           <div>
           </div>
@@ -164,9 +192,11 @@ function App() {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <button onClick={handleSaveCreation} className="card">
-            Load My Ticket
-          </button>
+<button onClick={handleSaveCreation} className="card"  disabled={!active}
+>
+  Load My Ticket
+</button>
+
         </div>
         )}
         <div style={{

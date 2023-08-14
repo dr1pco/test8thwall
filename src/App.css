@@ -185,15 +185,16 @@
 
 .loading-text {
   color: #004AAD;
-  font-size: 16px;
-  margin-top: 10px;
-}
-
-.loading-text {
-  color: #004AAD;
   font-size: 18px;
   font-weight: 800;
   font-family: Graduate;
+  margin-top: 10px; 
+}
+
+.points-text {
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 800;
   margin-top: 10px; 
 }
 
