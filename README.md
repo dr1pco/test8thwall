@@ -1,6 +1,44 @@
-# Monkey Mayhem - Geospatial AR Minigames with web3 rewards
+# Pitch, Play, and Win with AR NFTs!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
+Unleash your inner baseball player with our immersive AR mini-game. As you pitch and strike out the player, not only do you relish in the joy of winning, but you also get rewarded with a tangible digital token— a minted NFT ticket through the tiplink wallet. PitchAR exemplifies the cutting edge fusion of web2 and web3 functionality. Through a familiar interface and real-world interactions, we're bridging the gap between digital and physical, offering a seamless transition and engagement model for all kinds of users and businesses.
+
+## Core Features
+
+### Interoperability
+- Seamlessly load this mini-game into any digital AR NFT vending machine as a gating mechanism or use it independently.
+- Enable people to claim rewards using just their Gmail or existing Solana wallets using a Tiplink wallet.
+
+### Enhanced Engagement
+Perfect for businesses looking to showcase their offerings in an interactive manner, enticing potential customers and re-engaging the existing ones. PitchAR provides a truly ideal combination of the digital and physical worlds.
+
+## Key Benefits
+
+### Boost IRL Event Engagement
+- Elevate the experience at physical events with augmented reality interactions.
+
+### Securely Reward Loyalty at Scale
+- Express gratitude to your faithful customers with minted NFTs that cost you next to nothing (particularly if you use cNFTs) yet are secured by the blockchain.
+
+### Reduce New Customer Churn
+- Keep your new clientele engaged with the ability to rotate rewards and digital experiences, ensuring they come back for more.
+
+### Smooth Onboarding
+- Transition web2 individuals into the web3 ecosystem with familiar real-life activities.
+
+## Roadmap
+- Enhance UI and gameplay dynamics.
+- Introduce extended gameplay features, such as a 3-out rule and multiple innings.
+- Geofence the game, making it location-specific to business or events.
+- Implement support for Tamperproof NFTs allowing businesses to seal codes in their NFT rewards.
+- Integrate into digital NFT vending machines offering a gating game template for any business to use and allowing no code creation of engaging customized reward experiences for local businesses from coupons to in-game assets, the digital rewards are limitless.
+- Open up PitchAR game development, maintenance, and tournament creation to the community allowing for long term engagement and multiple games/seasons that can run in conjunction with events/the sports season.
+
+## Testing Instructions
+1. Access the game via this link on your mobile phone: [Test PitchAR](https://test8thwall.vercel.app/)
+2. Engage in a pitching session until you score 3 strikes and witness the "You Won!" message.
+3. Click on 'Load Your Ticket' to claim your free NFT Cubs ticket and wait on the "LOADING..." screen while the NFT reward mints.
+4. Login with your Gmail or extract the reward into your personal wallet from the Tiplink wallet.
 
 ## Available Scripts
 
