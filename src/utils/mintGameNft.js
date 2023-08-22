@@ -8,7 +8,7 @@ export default async function mintGameNft(userwalletaddress, metadatauri) {
 
   const data = {
     "userwalletaddress": `${userwalletaddress}`,
-    "gamename": `Cubs Game Ticket`,
+    "gamename": `PITCHAR - Cubs Game Ticket`,
     "metadatauri": `${metadatauri}`
   };
 

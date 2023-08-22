@@ -50,7 +50,7 @@ function App() {
 
   const [active, setActive] = useState(false)
 
-  
+
 
   const {
     user,
@@ -192,12 +192,12 @@ function App() {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-<button onClick={handleSaveCreation} className="card"  disabled={!active}
->
-  Load My Ticket
-</button>
+            <button onClick={handleSaveCreation} className="card" disabled={active}
+            >
+              Load My Ticket
+            </button>
 
-        </div>
+          </div>
         )}
         <div style={{
           display: "flex",
@@ -239,7 +239,7 @@ function App() {
         </footer>
       </div>
       {loading && (
-        <div className="loading-overlay">
+        <div className="loading-overlay" style={{display: "flex", justifyContent: "column"}}>
           <div className="loading-indicator"></div>
           <div className="loading-text">LOADING</div>
         </div>
