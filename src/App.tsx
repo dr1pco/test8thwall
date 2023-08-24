@@ -112,37 +112,22 @@ function App() {
       console.log("Wallet address: " + tpres.pk);
       const currentUserWallet = await tpres.pk;
       setTipLink(tpres.tiplinkurl);
-      // const sgres = await saveGame(
-      //   currentGameName,
-      //   currentUserWallet,
-      //   savedGameInput,
-      //   currentModifiedInput,
-      //   result
-      // );
-      // let gameLink;
-      // if (sgres.url) {
-      //   console.log("Game url: " + sgres.url);
-      //   gameLink = await sgres.url;
-      //   setCurrentGameLink(gameLink);
-      // } else {
-      //   throw new Error("Failed to save game. Please try saving again!");
-      // }
 
       const umres = await uploadMetadata(
         currentUserWallet
       );
       if (umres == "Failed to upload metadata!") {
-        throw new Error("Error 100: Failed to save game. Please try saving again!");
+        throw new Error("Error 100: Failed to save game. Please try again!");
       }
       console.log("Metadata URI: " + umres.metadataUri);
       const currentMetadataUri = await umres.metadataUri;
 
       if (!currentUserWallet) {
-        throw new Error("Error 101: Failed to save game. Please try saving again!");
+        throw new Error("Error 101: Failed to save game. Please try again!");
       }
       const preres = await prepareTipLink(currentUserWallet);
       if (!preres.result) {
-        throw new Error("Error 102: Failed to save game. Please try saving again!");
+        throw new Error("Error 102: Failed to save game. Please try again!");
       }
 
       const mgnres = await mintGameNft(
@@ -150,7 +135,7 @@ function App() {
         currentMetadataUri
       );
       if (mgnres == "Failed to mint!") {
-        throw new Error("Error 103: Failed to save game. Please try saving again!");
+        throw new Error("Error 103: Failed to save game. Please try again!");
       }
       console.log("Game minted: " + JSON.stringify(mgnres));
       const gameMintAddress = await mgnres.nftMintAddress;
@@ -160,7 +145,7 @@ function App() {
         setStatus("completed");
         setShowModal(true);
       } else {
-        throw new Error("Error 104: Failed to save game. Please try saving again!");
+        throw new Error("Error 104: Failed to save game. Please try again!");
       }
     } catch (error) {
       setLoading(false);
@@ -221,7 +206,7 @@ function App() {
           />
         </div>
         <footer className="footer">
-          <a
+          {/* <a
             href="https://docs.google.com/document/d/1Lu1p_RpNh1k0RUjsf6GCjlygCdKE467NFNGUYCBnK1I/edit?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
@@ -235,7 +220,7 @@ function App() {
             rel="noopener noreferrer"
           >
             Terms of Service
-          </a>
+          </a> */}
         </footer>
       </div>
       {loading && (
